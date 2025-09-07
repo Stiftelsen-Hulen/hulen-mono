@@ -57,6 +57,7 @@ export const ClientLayout = ({
             alignItems: 'center',
             gap: '2rem',
             wordBreak: 'break-word',
+            overflowX: 'hidden',
           }}
           tabIndex={-1}
         >
