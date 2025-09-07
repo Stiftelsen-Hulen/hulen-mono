@@ -11,7 +11,6 @@ import {
   Input,
   InputLabel,
   NativeSelect,
-  Paper,
   Stack,
   styled,
   TextField,
@@ -188,159 +187,167 @@ export const JoinEmailForm = ({
   }))
 
   return (
-    <Paper elevation={3}>
-      <Stack sx={{ backgroundColor: hulen_black }}>
-        <Box
-          component='form'
-          onSubmit={handleSubmit}
-          id='contactForm'
-          sx={{
-            backgroundColor: hulen_black,
-            borderColor: hulen_yellow,
-            border: '1px solid',
-            borderRadius: '16px',
-            padding: '1em',
-          }}
-        >
-          <p style={{ textDecorationLine: 'underline', fontSize: '1.5em' }}>
-            {content.emailFormTitle[language]}
-          </p>
-          <FormControl fullWidth>
-            <TextField
-              required
-              name='userEmail'
-              onChange={handleChange}
-              label={content.emailFormLabel[language]}
-              margin='normal'
-            ></TextField>
-          </FormControl>
-          <FormControl fullWidth>
-            <TextField
-              required
-              name='userName'
-              label={content.nameFormLabel[language]}
-              onChange={handleChange}
-              margin='normal'
-            ></TextField>
-          </FormControl>
-          <FormControl fullWidth>
-            <TextField
-              required
-              name='userAge'
-              label={content.ageFormLabel[language]}
-              type='number'
-              margin='normal'
-              onChange={handleChange}
-              defaultValue={20}
-              helperText='(18-100)'
-            />
-          </FormControl>
-          <PhoneInputWrapper>
-            <InputLabel
-              id='form-phone-label'
-              variant='standard'
-              sx={{
-                color: hulen_yellow_text,
+    <Stack
+      sx={{
+        backgroundColor: hulen_black,
+        marginX: '1rem',
+        width: '90vw',
+        maxWidth: '100vw',
+        boxSizing: 'border-box',
+        left: '50%', // Move to the center
+        alignItems: 'center',
+      }}
+    >
+      <Box
+        component='form'
+        onSubmit={handleSubmit}
+        id='contactForm'
+        sx={{
+          backgroundColor: hulen_black,
+          borderColor: hulen_yellow,
+          border: '1px solid',
+          borderRadius: '16px',
+          padding: '1em',
+        }}
+      >
+        <p style={{ textDecorationLine: 'underline', fontSize: '1.5em' }}>
+          {content.emailFormTitle[language]}
+        </p>
+        <FormControl fullWidth>
+          <TextField
+            required
+            name='userEmail'
+            onChange={handleChange}
+            label={content.emailFormLabel[language]}
+            margin='normal'
+          ></TextField>
+        </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            required
+            name='userName'
+            label={content.nameFormLabel[language]}
+            onChange={handleChange}
+            margin='normal'
+          ></TextField>
+        </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            required
+            name='userAge'
+            label={content.ageFormLabel[language]}
+            type='number'
+            margin='normal'
+            onChange={handleChange}
+            defaultValue={20}
+            helperText='(18-100)'
+          />
+        </FormControl>
+        <PhoneInputWrapper>
+          <InputLabel
+            id='form-phone-label'
+            variant='standard'
+            sx={{
+              color: hulen_yellow_text,
+              backgroundColor: hulen_black,
+              padding: '4px',
+              transformOrigin: 'top left',
+              whiteSpace: 'nowrap',
+              position: 'absolute',
+              transform: 'translate(12px, -14px) scale(0.75)',
+              zIndex: '2',
+            }}
+          >
+            {content.phoneFormLabel[language]}
+          </InputLabel>
+          <IntlTelInput
+            onChangeNumber={(phoneNumber) => (formData.phoneNumber = phoneNumber)}
+            onChangeValidity={(boolean) => (isValidPhoneNumber = boolean)}
+            initOptions={{
+              i18n: phonePluginLanguage(language) /*Translate phone-form to client-language */,
+              initialCountry: 'NO',
+              countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'ea', 'fr'],
+              // containerClass: 'MuiFormControl-root MuiFormControl-fullWidth ',
+              strictMode: false /*only optional (leading) plus, and numbers */,
+              hiddenInput: (telInputName) => ({
+                /* Sends the full international phone number and the country code*/
+                phone: 'phone_full',
+                country: 'country_code',
+              }),
+            }}
+          />
+        </PhoneInputWrapper>
+        <FormControl fullWidth>
+          <InputLabel
+            id='form-job-label'
+            variant='standard'
+            sx={{
+              color: hulen_yellow_text,
+              backgroundColor: hulen_black,
+              padding: '4px',
+              transformOrigin: 'top left',
+              whiteSpace: 'nowrap',
+              position: 'absolute',
+              transform: 'translate(12px, 4px) scale(0.75)',
+              zIndex: '1',
+            }}
+          >
+            {content.jobFormLabel[language]}
+          </InputLabel>
+          <NativeSelect
+            required
+            name='job'
+            variant='outlined'
+            value={formData.job}
+            onChange={handleChange}
+            input={<Input disableUnderline />} // removes blue underline
+            sx={{
+              position: 'relative',
+              '& .Mui-focused': {
+                borderColor: 'black',
+                borderWidth: '3px',
+              },
+              '& .MuiInputBase-input': {
                 backgroundColor: hulen_black,
-                padding: '4px',
-                transformOrigin: 'top left',
-                whiteSpace: 'nowrap',
-                position: 'absolute',
-                transform: 'translate(12px, -14px) scale(0.75)',
-                zIndex: '2',
-              }}
-            >
-              {content.phoneFormLabel[language]}
-            </InputLabel>
-            <IntlTelInput
-              onChangeNumber={(phoneNumber) => (formData.phoneNumber = phoneNumber)}
-              onChangeValidity={(boolean) => (isValidPhoneNumber = boolean)}
-              initOptions={{
-                i18n: phonePluginLanguage(language) /*Translate phone-form to client-language */,
-                initialCountry: 'NO',
-                countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'ea', 'fr'],
-                // containerClass: 'MuiFormControl-root MuiFormControl-fullWidth ',
-                strictMode: false /*only optional (leading) plus, and numbers */,
-                hiddenInput: (telInputName) => ({
-                  /* Sends the full international phone number and the country code*/
-                  phone: 'phone_full',
-                  country: 'country_code',
-                }),
-              }}
-            />
-          </PhoneInputWrapper>
-          <FormControl fullWidth>
-            <InputLabel
-              id='form-job-label'
-              variant='standard'
-              sx={{
-                color: hulen_yellow_text,
-                backgroundColor: hulen_black,
-                padding: '4px',
-                transformOrigin: 'top left',
-                whiteSpace: 'nowrap',
-                position: 'absolute',
-                transform: 'translate(12px, 4px) scale(0.75)',
-                zIndex: '1',
-              }}
-            >
-              {content.jobFormLabel[language]}
-            </InputLabel>
-            <NativeSelect
-              required
-              name='job'
-              variant='outlined'
-              value={formData.job}
-              onChange={handleChange}
-              input={<Input disableUnderline />} // removes blue underline
-              sx={{
-                position: 'relative',
-                '& .Mui-focused': {
-                  borderColor: 'black',
-                  borderWidth: '3px',
-                },
-                '& .MuiInputBase-input': {
-                  backgroundColor: hulen_black,
-                  border: '1px solid ' + hulen_yellow,
-                  padding: '16px 26px 16px 12px',
-                },
-              }}
-            >
-              {positions.map((position) => (
-                <option
-                  key={position.title[language]}
-                  value={position.title[language]}
-                  style={{ backgroundColor: '#282828', color: hulen_yellow_text }}
-                >
-                  {position.title[language]}
-                </option>
-              ))}
-            </NativeSelect>
-          </FormControl>
-          <FormControl fullWidth>
-            <TextField
-              required
-              name='userMessage'
-              margin='normal'
-              multiline
-              label={content.relevantInfoFormLabel[language]}
-              onChange={handleChange}
-            ></TextField>
-          </FormControl>
-          <div style={{ marginTop: '5px', alignItems: 'end' }}>
-            <Button
-              color='secondary'
-              variant='positionButton'
-              disableElevation
-              onClick={(e) => {
-                handleSubmit(e).then((result) => alert(result))
-              }}
-            >
-              Submit
-            </Button>
-          </div>
-        </Box>
-      </Stack>
-    </Paper>
+                border: '1px solid ' + hulen_yellow,
+                padding: '16px 26px 16px 12px',
+              },
+            }}
+          >
+            {positions.map((position) => (
+              <option
+                key={position.title[language]}
+                value={position.title[language]}
+                style={{ backgroundColor: '#282828', color: hulen_yellow_text }}
+              >
+                {position.title[language]}
+              </option>
+            ))}
+          </NativeSelect>
+        </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            required
+            name='userMessage'
+            margin='normal'
+            multiline
+            label={content.relevantInfoFormLabel[language]}
+            onChange={handleChange}
+          ></TextField>
+        </FormControl>
+        <div style={{ marginTop: '5px', alignItems: 'end' }}>
+          <Button
+            color='secondary'
+            variant='positionButton'
+            disableElevation
+            onClick={(e) => {
+              handleSubmit(e).then((result) => alert(result))
+            }}
+          >
+            Submit
+          </Button>
+        </div>
+      </Box>
+    </Stack>
   )
 }
