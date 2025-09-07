@@ -7,29 +7,29 @@ export default {
     {
       type: 'localeString',
       name: 'header',
-      title: 'Page header',
+      title: 'Tittel (Page header)',
       description: 'The big bold letters at the top',
     },
     {
       type: 'string',
       name: 'email',
-      title: 'Concact mail',
+      title: 'Kontaktepost (Concact email)',
       description: 'The EXACT mail you want to be spammed to',
     },
     {
       type: 'localeString',
       name: 'emailDescription',
-      title: 'Email preface',
+      title: 'Epost-Forord (Email Preface)',
       description:
         'The text after the nice bold letters and before the email. The email will be below.',
     },
     {
       type: 'array',
-      title: 'Categories',
+      title: 'Kategoried (Categories)',
       name: 'categories',
-      of: [{type: 'techCategory'}],
+      of: [{ type: 'techCategory' }],
       options: {
-        modal: {type: 'dialog', width: '80%'}, //Makes the modal type a popover
+        modal: { type: 'dialog', width: '80%' }, //Makes the modal type a popover
       },
     },
   ],

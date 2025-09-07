@@ -1,14 +1,14 @@
-import {defineConfig, Rule} from 'sanity'
-import {deskTool} from 'sanity/desk'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemas'
-import {documentI18n} from '@sanity/document-internationalization'
-import {Ti18nConfig} from '@sanity/document-internationalization/src/types'
-import {deskStructure} from './deskStructure'
+import { defineConfig, Rule } from 'sanity'
+import { deskTool } from 'sanity/desk'
+import { visionTool } from '@sanity/vision'
+import { schemaTypes } from './schemas'
+import { documentI18n } from '@sanity/document-internationalization'
+import { Ti18nConfig } from '@sanity/document-internationalization/src/types'
+import { deskStructure } from './deskStructure'
 
 export const supportedLanguages = [
-  {id: 'en', title: 'English', },
-  {id: 'no', title: 'Norwegian', isDefault: true},
+  { id: 'en', title: 'English', longTitle: 'Engelsk (English)', },
+  { id: 'no', title: 'Norwegian', longTitle: 'Norsk (Norwegian)', isDefault: true },
 ]
 supportedLanguages.find(l => l.isDefault)
 const i18nConfig: Ti18nConfig = {
@@ -24,13 +24,13 @@ const localeString = {
   // making it stand out as the main field.
   fieldsets: [
     {
-      title: 'Translations',
+      title: 'Oversettelser (Translations)',
       name: 'translations'
     }
   ],
   // Dynamically define one field per language
   fields: supportedLanguages.map(lang => ({
-    title: lang.title,
+    title: lang.longTitle,
     name: lang.id,
     type: 'string',
     fieldset: lang.isDefault ? null : 'translations',
@@ -47,16 +47,16 @@ const localeBlock = {
   // making it stand out as the main field.
   fieldsets: [
     {
-      title: 'Translations',
+      title: 'Oversettelser (Translations)',
       name: 'translations'
     }
   ],
   // Dynamically define one field per language
   fields: supportedLanguages.map(lang => ({
-    title: lang.title,
+    title: lang.longTitle,
     name: lang.id,
     type: 'array',
-    of: [{type: 'block'}, {type: 'localeImage'}],
+    of: [{ type: 'block' }, { type: 'localeImage' }],
     fieldset: lang.isDefault ? null : 'translations',
     validation: (rule: Rule) => rule.required()
   }))
@@ -66,31 +66,34 @@ const localeImage = {
   title: "Localized Image",
   name: 'localeImage',
   type: 'object',
-  fields:[ {
+  fields: [{
     title: 'image',
     name: 'Image',
     type: 'image',
-  },{
+  }, {
+    title: 'Alternativ Tekst (Alt Text)',
     type: "string",
     name: "altText",
-    description: "Accessabillity text describing the image"
+    description: "Accessabillity text describing the image in case the image is missing or doesn't render"
   },
-{type: 'string',
-description: 'Adding a url here will transform the entire image into a clickable link. If linking internally (at hulen.no), you only need to add f.ex "/contactUs". If linking externally, you need the full https://google.com type link',
-name: "linkUrl",
-}]
+  {
+    type: 'string',
+    description: 'Adding a url here will transform the entire image into a clickable link. If linking internally (at hulen.no), you only need to add f.ex "/contactUs". If linking externally, you need the full https://google.com type link',
+    name: "linkUrl",
+  }]
 
 }
 
 const imageWithLocaleAlt = {
-    type: 'image',
-    name: 'imageWithLocaleAlt',
-    title: 'Image',
-    fields: [{
-      name: "altText",
-      type: "localeString",
-      description: "Accessibility text describing the image"
-    }]
+  type: 'image',
+  name: 'imageWithLocaleAlt',
+  title: 'Bilde (Image)',
+  fields: [{
+    title: 'Alternativ Tekst (Alt Text)',
+    name: "altText",
+    type: "localeString",
+    description: "Accessabillity text describing the image in case the image is missing or doesn't render"
+  }]
 }
 
 
@@ -103,11 +106,11 @@ export default defineConfig({
 
   plugins: [deskTool(
     {
-      structure: (S, {schema}) => deskStructure(i18nConfig, S, schema)
+      structure: (S, { schema }) => deskStructure(i18nConfig, S, schema)
     }
   ), visionTool(), documentI18n(i18nConfig)],
 
   schema: {
-    types: [localeString,localeBlock,localeImage, imageWithLocaleAlt, ...schemaTypes]
+    types: [localeString, localeBlock, localeImage, imageWithLocaleAlt, ...schemaTypes]
   }
 })

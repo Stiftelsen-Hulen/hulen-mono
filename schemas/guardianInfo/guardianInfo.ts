@@ -1,7 +1,7 @@
 export default {
   type: 'document',
   name: 'guardianInfo',
-  title: 'Guardian Info',
+  title: 'Verge (Guardian)',
   fields: [
     {
       type: 'string',
@@ -11,27 +11,27 @@ export default {
     }, {
       type: 'localeString',
       name: 'header',
-      title: 'Page header',
+      title: 'Tittel (Page header)',
       description: 'The big bold letters at the top',
     }, {
       type: 'localeBlock',
       name: 'intro',
-      title: 'Introduction text',
+      title: 'Introtekst (Intro Text)',
       description: 'The text below the big bold letters at the top'
     }, {
       type: 'localeString',
       name: 'subHeading',
-      title: "Subheading",
+      title: "Undertittel (Subheader)",
       description: 'The subheading beside the image'
     }, {
       type: 'localeBlock',
       name: 'description',
-      title: 'Description',
+      title: 'Beskrivelse (Description)',
       description: 'The text below the subheading and beside the image'
     }, {
       type: 'imageWithLocaleAlt',
       name: 'guardianImage',
-      title: 'Image',
+      title: 'Bilde (Image)',
       description: 'The image beside the text',
     }
   ],

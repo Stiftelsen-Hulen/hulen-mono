@@ -1,13 +1,13 @@
 import { Rule } from 'sanity'
 
 export default {
-  title: 'Position Description section',
+  title: 'Stillings-Forord (Position preface)',
   type: 'object',
   name: 'positionPreface',
   description: 'Introduction before positions',
   fields: [
     {
-      title: 'Header',
+      title: 'Tittel (Header)',
       name: 'header',
       type: 'localeString',
       validation: (rule: Rule) => rule.required(),
@@ -15,10 +15,11 @@ export default {
     {
       type: 'localeBlock',
       name: 'content',
-      title: 'Content',
+      title: 'Innhold (Content)',
       validation: (rule: Rule) => rule.required(),
     },
     {
+      title: 'Bilde (Image)',
       type: 'image',
       image: 'icon',
       name: 'descImage',

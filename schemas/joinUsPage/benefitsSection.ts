@@ -1,13 +1,14 @@
-import {Rule} from 'sanity'
+import { Rule } from 'sanity'
 
 export default {
-  title: 'Benefits section',
+  title: 'Fordeler (Benefits)',
   type: 'object',
   name: 'benefitsSection',
   description: 'List out the benefits of Hulen here',
   fields: [
-    {title: 'Header', name: 'header', type: 'localeString', validation: (rule: Rule) => rule.required()},
+    { title: 'Tittel (Header)', name: 'header', type: 'localeString', validation: (rule: Rule) => rule.required() },
     {
+      title: 'Ikon (Icon)',
       type: 'image',
       image: 'icon',
       name: 'descImage',
@@ -16,7 +17,7 @@ export default {
     {
       type: 'localeBlock',
       name: 'content',
-      title: 'Content',
+      title: 'Innhold (Content)',
       validation: (rule: Rule) => rule.required(),
     },
   ],

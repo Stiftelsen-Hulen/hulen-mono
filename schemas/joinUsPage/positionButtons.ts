@@ -1,5 +1,5 @@
 export default {
-  title: 'Navigation button',
+  title: 'Navigeringsknapp (Navigation button)',
   name: 'joinUsNavButton',
   type: 'object',
   fields: [
@@ -10,7 +10,7 @@ export default {
       title: 'Button Label',
     },
     {
-      title: 'Section Url',
+      title: 'Seksjons-Url (Section Url)',
       type: 'string',
       name: 'section',
       description:

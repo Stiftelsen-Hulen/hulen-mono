@@ -1,25 +1,25 @@
 export default {
   type: 'object',
-  title: 'Contact info',
+  title: 'Kontaktinformasjon (Contact info)',
   name: 'contactInfo',
   fields: [
     {
-      title: 'title',
+      title: 'Tittel (Title)',
       name: 'title',
       type: 'localeString',
     },
     {
-      title: 'name',
+      title: 'Navn (Name)',
       name: 'name',
       type: 'string',
     },
     {
       type: 'string',
       name: 'email',
-      title: 'email',
+      title: 'Epost (email)',
     },
     {
-      title: 'phone',
+      title: 'Telefon (Phone)',
       name: 'phone',
       type: 'string',
     },

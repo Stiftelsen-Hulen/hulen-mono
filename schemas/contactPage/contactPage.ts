@@ -1,8 +1,8 @@
-import {Rule} from 'sanity'
+import { Rule } from 'sanity'
 
 //This is the schema for the contact page. There is only this, so we bundle everything into it
 export default {
-  title: 'Contact Info',
+  title: 'Kontakt Oss (Contacts)',
   name: 'contactPage',
   type: 'document',
   description: 'Contact page information. Only the newest published version will be available',
@@ -14,7 +14,7 @@ export default {
     },
     {
       type: 'localeBlock',
-      title: 'headerInfo',
+      title: 'Toppinfo (Header Info)',
       name: 'headerInfoBlock',
       validation: (rule: Rule) => rule.required(),
     },
@@ -31,17 +31,17 @@ export default {
         {
           type: 'string',
           name: 'email',
-          title: 'Email',
+          title: 'Epost (Email)',
         },
       ],
     },
     {
       type: 'array',
-      title: 'Contact Info',
+      title: 'Kontaktinfo (Contact Info)',
       name: 'contactList',
-      of: [{type: 'contactInfo'}],
+      of: [{ type: 'contactInfo' }],
       options: {
-        modal: {type: 'dialog', width: '80%'}, //Makes the modal type a popover
+        modal: { type: 'dialog', width: '80%' }, //Makes the modal type a popover
       },
     },
   ],

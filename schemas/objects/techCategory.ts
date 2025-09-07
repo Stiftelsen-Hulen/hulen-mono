@@ -1,17 +1,17 @@
 export default {
-  title: 'Tech Category',
+  title: 'Tech Kategori (Tech Category)',
   name: 'techCategory',
   type: 'object',
   fields: [
     {
       type: 'string',
-      title: 'Category',
+      title: 'Kategori (Category)',
       name: 'category',
       description: 'For grouping equipment, name your category here. ',
     },
     {
       type: 'array',
-      title: 'Entries',
+      title: 'Oppføringer (Entries)',
       name: 'entries',
       description: 'Insert whatever you need here',
       of: [{ type: 'string' }],

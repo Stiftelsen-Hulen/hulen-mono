@@ -2,7 +2,7 @@ import { Rule } from 'sanity'
 
 export default {
   type: 'document',
-  title: 'Join Email Form Api',
+  title: 'Bli Med Skjema for Api (Join Us Form for Api)',
   name: 'joinEmailFormApi',
   fields: [
     {
