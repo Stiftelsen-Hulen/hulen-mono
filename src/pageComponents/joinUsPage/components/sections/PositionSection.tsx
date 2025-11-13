@@ -1,11 +1,92 @@
-import { useState, useRef } from 'react'
 import type { Position } from '@/types/sanity/joinUsPage/position'
 import type { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
-import { Stack, Typography, Box } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { PortableText } from '@portabletext/react'
-import { PositionButtons, PositionEntry } from '../position'
 import { SanityImageComponent } from '@/components/sanity'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { hulen_black, hulen_yellow } from '@/styles'
+import React from 'react'
+
+const Dayshift = 'outside_regular'
+const Nightshift = 'night_shift'
+
+const MaxWidth = 800
+const MaxHeight = 550
+
+function GetMaxWidth(position: Position) {
+  return Math.min(
+    // max width, picture width, or width calculated from maxheight and aspect ratio
+    MaxWidth,
+    position.descImage.asset.metadata.dimensions.width,
+    MaxHeight * position.descImage.asset.metadata.dimensions.aspectRatio
+  )
+}
+
+function GetMaxHeight(position: Position) {
+  return Math.min(
+    // max height, picture height, or height calculated from maxwidth and aspect ratio
+    MaxHeight,
+    position.descImage.asset.metadata.dimensions.height,
+    MaxWidth / position.descImage.asset.metadata.dimensions.aspectRatio
+  )
+}
+
+function PositionEntry(position: Position) {
+  const { language } = useLanguage()
+  const image = position.descImage
+
+  return (
+    <Accordion
+      sx={{
+        borderWidth: '0.5px',
+        backgroundColor: hulen_black,
+      }}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon color='secondary' />}
+        aria-controls='panel2-content'
+        id='panel2-header'
+      >
+        {position.title[language]}
+        {/* TODO: Add oneliner short description {position.shortDescription[language]} */}
+      </AccordionSummary>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'center', md: 'inherit' },
+          justifyContent: 'space-between',
+          backgroundColor: hulen_black,
+          marginBottom: '10px',
+        }}
+      >
+        <AccordionDetails>
+          <PortableText value={position.description[language]} />
+        </AccordionDetails>
+        {image && (
+          <SanityImageComponent
+            imageData={image}
+            alt={image.altText?.[language] ?? ''}
+            width={window.innerWidth < 900 ? 0 : GetMaxWidth(position)}
+            sx={{
+              minWidth: window.innerWidth < 900 ? 0 : 352,
+              maxHeight: GetMaxHeight(position),
+              maxWidth: GetMaxWidth(position),
+            }}
+          />
+        )}
+      </Box>
+    </Accordion>
+  )
+}
 
 /**
  * Section for positions on join us page, includes:
@@ -21,25 +102,6 @@ export const PositionSection = ({
   positions: Position[]
 }) => {
   const { language } = useLanguage()
-  const [activeIndex, setActiveIndex] = useState(0)
-  const carouselRef = useRef<HTMLDivElement>(null)
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % positions.length)
-    scrollToPosition(activeIndex + 1)
-  }
-
-  const handlePrevious = () => {
-    setActiveIndex((prev) => (prev - 1 + positions.length) % positions.length)
-    scrollToPosition(activeIndex - 1)
-  }
-
-  const scrollToPosition = (index: number) => {
-    if (carouselRef.current) {
-      const positionElement = carouselRef.current.children[index] as HTMLElement
-      positionElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
-    }
-  }
 
   return (
     <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }} id='positions'>
@@ -53,7 +115,7 @@ export const PositionSection = ({
               sm: '20vw',
               md: '15vw',
               lg: '200px',
-              xl: '250px'
+              xl: '250px',
             },
             height: 'auto',
             minWidth: '100px',
@@ -63,59 +125,40 @@ export const PositionSection = ({
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>
-
-      {window.innerWidth > 700 ? (
-        <PositionButtons positions={positions} />
-      ) : (
-        <div
-          className='positionLinks'
-          style={{
-            width: window.innerWidth < 700 ? '90%' : '66%',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          {positions.map((position, index) => (
-            <a
-              onClick={() => scrollToPosition(index)}
-              key={index}
-              style={{
-                cursor: 'pointer',
-                margin: '0px 3.33px',
-                display: 'inline-block',
-                transition: 'background-color 0.6s',
-                textDecoration: 'underline',
-              }}
-            >
-              {position.title[language]}
-            </a>
-          ))}
-        </div>
-      )}
-
-      <Box
+      <Accordion
         sx={{
-          display: 'flex',
-          gap: '2rem',
-          margin: '2rem 0rem',
-          width: '100%',
-          overflowX: 'auto',
-          scrollSnapType: 'x mandatory',
-          scrollBehavior: 'smooth',
-          '& > *': {
-            scrollSnapAlign: 'start',
-            flex: '0 0 auto',
-          },
+          borderLeftWidth: '1px',
+          borderRightWidth: '1px',
+          BorderColor: hulen_yellow,
+          borderStyle: 'solid',
         }}
-        ref={carouselRef}
       >
-        {positions.map((position, index) => (
-          <Box key={index} sx={{ width: '100%', maxWidth: '100%' }}>
-            <PositionEntry position={position} />
-          </Box>
-        ))}
-      </Box>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon color='secondary' />}
+          aria-controls='panel2-content'
+          id='dayshift-accordion'
+        >
+          Dayshifts
+        </AccordionSummary>
+        {positions.map((pos, index) => pos.category === Dayshift && PositionEntry(pos))}
+      </Accordion>
+      <Accordion
+        sx={{
+          borderLeftWidth: '1px',
+          borderRightWidth: '1px',
+          BorderColor: hulen_yellow,
+          borderStyle: 'solid',
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon color='secondary' />}
+          aria-controls='panel2-content'
+          id='dayshift-accordion'
+        >
+          Night Shifts
+        </AccordionSummary>
+        {positions.map((pos, index) => pos.category === Nightshift && PositionEntry(pos))}
+      </Accordion>
     </Stack>
   )
 }

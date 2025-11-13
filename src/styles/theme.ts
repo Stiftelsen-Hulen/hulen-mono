@@ -218,8 +218,8 @@ const theme = createTheme({
           '&.Mui-focused': {
             color: hulen_yellow_text,
           },
-        }
-      }
+        },
+      },
     },
     MuiNativeSelect: {
       styleOverrides: {
@@ -236,8 +236,8 @@ const theme = createTheme({
               borderWidth: '3px',
             },
           },
-        }
-      }
+        },
+      },
     },
     MuiTextField: {
       styleOverrides: {
@@ -265,6 +265,65 @@ const theme = createTheme({
           '& .MuiFormHelperText-contained': {
             // Help text
             color: hulen_yellow_text,
+          },
+        },
+      },
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          color: hulen_yellow,
+          borderColor: hulen_yellow,
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          width: '100%',
+          margin: '0px !important',
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          background: hulen_black,
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          background: hulen_black,
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          color: hulen_yellow_text + ' !important',
+          background: hulen_black,
+          borderColor: hulen_yellow,
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          width: '100%',
+          margin: '0px !important',
+          fontWeight: 'lighter',
+          fontSize: '1.375rem !important',
+          textColor: hulen_yellow_text + ' !important',
+          indicatorColor: hulen_yellow_text + ' !important',
+
+          '& .Mui-selected': {
+            fontWeight: 'bold',
+            textColor: hulen_yellow_text + ' !important',
+            indicatorColor: hulen_yellow_text + ' !important',
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          '.indicator': {
+            color: 'white',
+            paddingBottom: '3px',
           },
         },
       },
