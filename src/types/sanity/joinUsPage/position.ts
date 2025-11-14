@@ -8,6 +8,6 @@ export interface Position {
   title: Record<LanguageOptions, string>
   category: PositionShiftType
   description: Record<LanguageOptions, PortableTextBlock>
-  shortDescription: Record<LanguageOptions, string>
+  onelinerDescription: Record<LanguageOptions, string>
   descImage: SanityImageWithLocaleAlt
 }

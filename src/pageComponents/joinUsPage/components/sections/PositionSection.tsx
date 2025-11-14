@@ -54,9 +54,22 @@ function PositionEntry(position: Position) {
         expandIcon={<ExpandMoreIcon color='secondary' />}
         aria-controls='panel2-content'
         id='panel2-header'
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
         {position.title[language]}
-        {/* TODO: Add oneliner short description {position.shortDescription[language]} */}
+        <Typography
+          variant='body1'
+          sx={{
+            display: window.innerWidth >= 900 ? 'block' : 'none',
+            textAlign: 'right',
+            marginLeft: 'auto',
+            marginRight: '10px',
+          }}
+        >
+          {position.onelinerDescription && window.innerWidth >= 900
+            ? `        ${position.onelinerDescription[language]}`
+            : ''}
+        </Typography>
       </AccordionSummary>
       <Box
         sx={{
