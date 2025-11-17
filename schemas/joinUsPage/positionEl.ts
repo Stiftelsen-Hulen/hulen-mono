@@ -26,6 +26,13 @@ export default {
       validation: (rule: Rule) => rule.required(),
     },
     {
+      type: 'localeString',
+      desciption: 'Oneliner description of a position',
+      name: 'onelinerDescription',
+      title: 'Kort beskrivelse (Short description)',
+      validation: (rule: Rule) => rule.optional(),
+    },
+    {
       type: 'localeBlock',
       desciption: 'Description of a position. Feel free to pour your heart out',
       name: 'description',
