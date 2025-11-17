@@ -1,19 +1,12 @@
 import { defineConfig, Rule } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemas'
-import { documentI18n } from '@sanity/document-internationalization'
-import { Ti18nConfig } from '@sanity/document-internationalization/src/types'
-import { deskStructure } from './deskStructure'
 
 export const supportedLanguages = [
   { id: 'en', title: 'English', longTitle: 'Engelsk (English)', },
   { id: 'no', title: 'Norwegian', longTitle: 'Norsk (Norwegian)', isDefault: true },
 ]
-supportedLanguages.find(l => l.isDefault)
-const i18nConfig: Ti18nConfig = {
-  languages: supportedLanguages
-}
 
 const localeString = {
   title: 'Localized string',
@@ -104,13 +97,18 @@ export default defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID ?? '',
   dataset: 'production',
 
-  plugins: [deskTool(
-    {
-      structure: (S, { schema }) => deskStructure(i18nConfig, S, schema)
-    }
-  ), visionTool(), documentI18n(i18nConfig)],
+  plugins: [
+    structureTool(),
+    visionTool()
+  ],
 
   schema: {
-    types: [localeString, localeBlock, localeImage, imageWithLocaleAlt, ...schemaTypes]
+    types: [
+      localeString,
+      localeBlock,
+      localeImage,
+      imageWithLocaleAlt,
+      ...schemaTypes
+    ]
   }
 })
