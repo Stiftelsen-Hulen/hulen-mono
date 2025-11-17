@@ -1,11 +1,12 @@
 import { Rule } from 'sanity'
 
 export default {
-  title: 'Position',
+  title: 'Stilling (Position)',
   name: 'positionEl',
   type: 'object',
   fields: [
     {
+      title: 'Tittel (Title)',
       type: 'localeString',
       name: 'title',
       description:
@@ -13,7 +14,7 @@ export default {
       validation: (rule: Rule) => rule.required(),
     },
     {
-      title: 'Category',
+      title: 'Katgori (Category)',
       name: 'category',
       type: 'string',
       description: 'Which category to put the position in, either night shift or normal shift',
@@ -36,13 +37,13 @@ export default {
       type: 'localeBlock',
       desciption: 'Description of a position. Feel free to pour your heart out',
       name: 'description',
-      title: 'Description',
+      title: 'Beskrivelse (Description)',
       validation: (rule: Rule) => rule.required(),
     },
     {
       type: 'imageWithLocaleAlt',
       name: 'descImage',
-      title: 'Decorative Image',
+      title: 'Stillingsbilde (Decorative Image)',
       description:
         'While you can put an image into the above description, it is easier controlled to put it here',
     },

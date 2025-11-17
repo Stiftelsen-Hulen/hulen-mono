@@ -10,22 +10,22 @@ export default {
     fields: [
         {
             type: "string",
-            title: "Title",
+            title: "Tittel (Title)",
             name: "title",
         },
         {
             type: "number",
-            title: "Sort Order",
+            title: "Sorteringsrekkefølge (Sort Order)",
             name: "sortOrder",
             description: "Sort order defines, in increasing order the placement of each element from the left",
             validation: (rule: Rule) => rule.required().custom(validateUniquenessNumber)
 
         },
-       {
-           type: "localeBlock",
-           title: "Footer element",
-           name: "footerElement",
-           validation: (rule: Rule) => rule.required(),
-       }
+        {
+            type: "localeBlock",
+            title: "Bunnelement (Footer element)",
+            name: "footerElement",
+            validation: (rule: Rule) => rule.required(),
+        }
     ]
-   }
+}

@@ -1,7 +1,7 @@
 import { Rule } from 'sanity'
 
 export default {
-  title: 'Join Us',
+  title: 'Bli Frivillig (Join Us)',
   name: 'joinUsPage',
   type: 'document',
   fields: [
@@ -9,12 +9,12 @@ export default {
       type: 'string',
       name: 'title',
       title: 'title',
-      description: 'title of object, for storage purposes only',
+      description: 'title of object, for storage purposes onsly',
     },
     {
       type: 'localeString',
       name: 'pageTitle',
-      title: 'Page Header',
+      title: 'Tittel (Page Header)',
       description: 'This is the top header of the page',
       validation: (rule: Rule) => rule.required(),
     },
@@ -26,7 +26,7 @@ export default {
       validation: (rule: Rule) => rule.required(),
     },
     {
-      title: 'Navigation Buttons',
+      title: 'Navigeringsknapper (Navigation Buttons)',
       name: 'navigationButtons',
       description: 'Clickable navigation button, be careful when touching these',
       type: 'array',
@@ -35,18 +35,18 @@ export default {
     {
       type: 'joinUsSection',
       name: 'joinSection',
-      title: 'Join Section',
+      title: 'Bli Med! (Join! section)',
       validation: (rule: Rule) => rule.required(),
     },
     {
-      title: 'positionDescription',
+      title: 'Stillings-Forord (Position preface)',
       type: 'positionPreface',
       description: 'Info text before positions are listed',
       name: 'positionPreface',
     },
     {
       type: 'array',
-      title: 'Available Positions',
+      title: 'Stillinger (Positions)',
       description: 'Each available position',
       name: 'positions',
       of: [{ type: 'positionEl' }],
@@ -54,13 +54,13 @@ export default {
     {
       type: 'benefitsSection',
       name: 'benefitsSection',
-      title: 'Benefits Section',
+      title: 'Fordeler (Benefits)',
       validation: (rule: Rule) => rule.required(),
     },
     {
       type: 'joinEmailForm',
       name: 'joinEmailForm',
-      title: 'Join Us Email Form',
+      title: 'Epostskjema (Email Form)',
       description: 'Email form to apply for positions at Hulen',
       validation: (rule: Rule) => rule.required(),
     },

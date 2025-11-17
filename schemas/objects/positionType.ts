@@ -4,22 +4,22 @@ export default {
   name: 'positionType',
   fields: [
     {
-      title: 'title',
+      title: 'Tittel (Title)',
       name: 'title',
       type: 'string',
     },
     {
-      title: 'key',
+      title: 'Nøkkel (Key)',
       name: 'key',
       type: 'string',
     },
     {
       type: 'string',
       name: 'en',
-      title: 'en',
+      title: 'Engelsk (English)',
     },
     {
-      title: 'no',
+      title: 'Norsk (Norwegian)',
       name: 'no',
       type: 'string',
     },
