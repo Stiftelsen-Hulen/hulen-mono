@@ -18,10 +18,11 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
         backgroundColor: hulen_yellow_text,
         borderRadius: '0rem',
         padding: '4rem',
-        width: 'calc(100% + 4rem)',
+        width: '100vw', // Full viewport width
         position: 'relative',
-        left: '-2rem',
-        maxWidth: 'none',
+        left: 'calc(-50vw + 50%)',
+        maxWidth: '100vw',
+        boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -47,7 +48,7 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
               sm: '20vw',
               md: '15vw',
               lg: '200px',
-              xl: '250px'
+              xl: '250px',
             },
             height: 'auto',
             minWidth: '100px',

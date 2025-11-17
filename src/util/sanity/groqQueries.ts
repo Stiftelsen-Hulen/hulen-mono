@@ -70,6 +70,7 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
   positions[]{
     title{${languageOptions}},
     category,
+    onelinerDescription{${languageOptions}},
     description{${languageOptions}},
     descImage{
       asset -> {url, metadata},

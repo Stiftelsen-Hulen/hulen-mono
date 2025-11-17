@@ -1,15 +1,110 @@
 import type { Position } from '@/types/sanity/joinUsPage/position'
 import type { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
-import { Stack, Typography } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { PortableText } from '@portabletext/react'
-import { PositionButtons, PositionEntry } from '../position'
 import { SanityImageComponent } from '@/components/sanity'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { hulen_black, hulen_yellow } from '@/styles'
+import React from 'react'
+
+const Dayshift = 'outside_regular'
+const Nightshift = 'night_shift'
+
+const MaxWidth = 800
+const MaxHeight = 550
+
+function GetMaxWidth(position: Position) {
+  return Math.min(
+    // max width, picture width, or width calculated from maxheight and aspect ratio
+    MaxWidth,
+    position.descImage.asset.metadata.dimensions.width,
+    MaxHeight * position.descImage.asset.metadata.dimensions.aspectRatio
+  )
+}
+
+function GetMaxHeight(position: Position) {
+  return Math.min(
+    // max height, picture height, or height calculated from maxwidth and aspect ratio
+    MaxHeight,
+    position.descImage.asset.metadata.dimensions.height,
+    MaxWidth / position.descImage.asset.metadata.dimensions.aspectRatio
+  )
+}
+
+function PositionEntry(position: Position) {
+  const { language } = useLanguage()
+  const image = position.descImage
+
+  return (
+    <Accordion
+      sx={{
+        borderWidth: '0.5px',
+        backgroundColor: hulen_black,
+      }}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon color='secondary' />}
+        aria-controls='panel2-content'
+        id='panel2-header'
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+      >
+        {position.title[language]}
+        <Typography
+          variant='body1'
+          sx={{
+            display: window.innerWidth >= 900 ? 'block' : 'none',
+            textAlign: 'right',
+            marginLeft: 'auto',
+            marginRight: '10px',
+          }}
+        >
+          {position.onelinerDescription && window.innerWidth >= 900
+            ? `        ${position.onelinerDescription[language]}`
+            : ''}
+        </Typography>
+      </AccordionSummary>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'center', md: 'inherit' },
+          justifyContent: 'space-between',
+          backgroundColor: hulen_black,
+          marginBottom: '10px',
+        }}
+      >
+        <AccordionDetails>
+          <PortableText value={position.description[language]} />
+        </AccordionDetails>
+        {image && (
+          <SanityImageComponent
+            imageData={image}
+            alt={image.altText?.[language] ?? ''}
+            width={window.innerWidth < 900 ? 0 : GetMaxWidth(position)}
+            sx={{
+              minWidth: window.innerWidth < 900 ? 0 : 352,
+              maxHeight: GetMaxHeight(position),
+              maxWidth: GetMaxWidth(position),
+            }}
+          />
+        )}
+      </Box>
+    </Accordion>
+  )
+}
 
 /**
  * Section for positions on join us page, includes:
  * Introduction
- * Postition Buttons
+ * Position Buttons
  * Position entries
  */
 export const PositionSection = ({
@@ -33,7 +128,7 @@ export const PositionSection = ({
               sm: '20vw',
               md: '15vw',
               lg: '200px',
-              xl: '250px'
+              xl: '250px',
             },
             height: 'auto',
             minWidth: '100px',
@@ -43,14 +138,40 @@ export const PositionSection = ({
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>
-
-      <PositionButtons positions={positions} />
-
-      <Stack sx={{ gap: '2rem', margin: '2rem 0rem', width: '100%' }}>
-        {positions.map((position, index) => (
-          <PositionEntry position={position} key={index} />
-        ))}
-      </Stack>
+      <Accordion
+        sx={{
+          borderLeftWidth: '1px',
+          borderRightWidth: '1px',
+          BorderColor: hulen_yellow,
+          borderStyle: 'solid',
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon color='secondary' />}
+          aria-controls='panel2-content'
+          id='dayshift-accordion'
+        >
+          Dayshifts
+        </AccordionSummary>
+        {positions.map((pos, index) => pos.category === Dayshift && PositionEntry(pos))}
+      </Accordion>
+      <Accordion
+        sx={{
+          borderLeftWidth: '1px',
+          borderRightWidth: '1px',
+          BorderColor: hulen_yellow,
+          borderStyle: 'solid',
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon color='secondary' />}
+          aria-controls='panel2-content'
+          id='dayshift-accordion'
+        >
+          Night Shifts
+        </AccordionSummary>
+        {positions.map((pos, index) => pos.category === Nightshift && PositionEntry(pos))}
+      </Accordion>
     </Stack>
   )
 }

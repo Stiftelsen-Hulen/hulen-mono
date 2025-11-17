@@ -1,5 +1,7 @@
 # Hulen Frontend
 
+Welcome new developer! You likely have many questions. Some of them can be answered [here]() or further down in this document. If not, feel free to reach out. -- Halvor Brunt
+
 This is an improved version of the frontend for [hulen.no](https://www.hulen.no). The content is from [Hulen Studio (sanity)](https://github.com/Stiftelsen-Hulen/hulen_sanity).
 
 
