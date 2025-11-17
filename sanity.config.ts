@@ -89,7 +89,6 @@ const imageWithLocaleAlt = {
   }]
 }
 
-
 export default defineConfig({
   name: 'default',
   title: 'hulen_sanity_studio',
