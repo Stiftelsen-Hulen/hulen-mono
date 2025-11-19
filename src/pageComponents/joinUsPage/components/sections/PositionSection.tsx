@@ -151,7 +151,7 @@ export const PositionSection = ({
           aria-controls='panel2-content'
           id='dayshift-accordion'
         >
-          Dayshifts
+          {language == 'no' ? 'Dagvakter' : 'Day Shifts'}
         </AccordionSummary>
         {positions.map((pos, index) => pos.category === Dayshift && PositionEntry(pos))}
       </Accordion>
@@ -168,7 +168,7 @@ export const PositionSection = ({
           aria-controls='panel2-content'
           id='dayshift-accordion'
         >
-          Night Shifts
+          {language == 'no' ? 'Kveldsvakter' : 'Night Shifts'}
         </AccordionSummary>
         {positions.map((pos, index) => pos.category === Nightshift && PositionEntry(pos))}
       </Accordion>
