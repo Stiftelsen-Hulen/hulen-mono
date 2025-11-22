@@ -90,6 +90,7 @@ function PositionEntry(position: Position) {
             alt={image.altText?.[language] ?? ''}
             width={window.innerWidth < 900 ? 0 : GetMaxWidth(position)}
             sx={{
+              paddingX: { xs: '16px', md: 'inherit' }, // space between the border and picture for smaller viewports. Same as in padding as AccordionDetails text-content
               minWidth: window.innerWidth < 900 ? 0 : 352,
               maxHeight: GetMaxHeight(position),
               maxWidth: GetMaxWidth(position),
