@@ -46,6 +46,7 @@ function PositionEntry(position: Position) {
   return (
     <Accordion
       sx={{
+        borderRadius: '0px !important',
         borderWidth: '0.5px',
         backgroundColor: hulen_black,
       }}
@@ -139,40 +140,37 @@ export const PositionSection = ({
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>
-      <Accordion
+
+      <Typography variant='h4'>
+        {language == 'no' ? 'Dagtidsstillinger' : 'Daytime Positions'}
+      </Typography>
+
+      <Box
         sx={{
+          borderWidth: '1px',
           borderLeftWidth: '1px',
           borderRightWidth: '1px',
           BorderColor: hulen_yellow,
           borderStyle: 'solid',
         }}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon color='secondary' />}
-          aria-controls='panel2-content'
-          id='dayshift-accordion'
-        >
-          {language == 'no' ? 'Dagvakter' : 'Day Shifts'}
-        </AccordionSummary>
         {positions.map((pos, index) => pos.category === Dayshift && PositionEntry(pos))}
-      </Accordion>
-      <Accordion
+      </Box>
+
+      <Typography variant='h4'>
+        {language == 'no' ? 'Kveldsstillinger' : 'Night Time Positions'}
+      </Typography>
+      <Box
         sx={{
+          borderWidth: '1px',
           borderLeftWidth: '1px',
           borderRightWidth: '1px',
           BorderColor: hulen_yellow,
           borderStyle: 'solid',
         }}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon color='secondary' />}
-          aria-controls='panel2-content'
-          id='dayshift-accordion'
-        >
-          {language == 'no' ? 'Kveldsvakter' : 'Night Shifts'}
-        </AccordionSummary>
         {positions.map((pos, index) => pos.category === Nightshift && PositionEntry(pos))}
-      </Accordion>
+      </Box>
     </Stack>
   )
 }
