@@ -21,7 +21,9 @@
     "react-icons": "^4.4.0",
     "react-is": "^18.2.0",
     "sanity": "^4.15.0",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "prismjs": "^1.30",
+    "glob": "^10.5"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
