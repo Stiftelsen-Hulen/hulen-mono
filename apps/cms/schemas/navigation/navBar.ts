@@ -1,0 +1,27 @@
+export default {
+  title: 'Navigeringsmeny (Navigation Bar)',
+  name: 'navBarProps',
+  type: 'document',
+  fields: [
+    {
+      type: 'string',
+      name: 'version',
+      title: 'Versjontittel (Version title)',
+      description:
+        'You only need one navbar. Hulen.no will pick the latest navbar, so you can work on creating a new one, or edit the current one. Version title is a descriptive field only.',
+    },
+    {
+      title: 'Navigeringsmenylogo (Navbar Logo)',
+      type: 'imageWithLocaleAlt',
+      name: 'navbarLogo',
+      description:
+        'Logo element that appear on top of Hulen.no in the navbar. The Alt text is for screen readers and such.',
+    },
+    {
+      type: 'array',
+      title: 'Navigeringsknapper (Navigation Buttons)',
+      name: 'navElements',
+      of: [{ type: 'navElement' }],
+    },
+  ],
+}
