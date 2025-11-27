@@ -13,10 +13,13 @@
     "start": "turbo start"
   },
   "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.6.2",
     "turbo": "^2.6.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "next": "^14.2.33",
     "react": "^18.3",
     "react-dom": "^18.3"
   }

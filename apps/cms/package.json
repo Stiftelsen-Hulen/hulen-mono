@@ -26,11 +26,9 @@
     "glob": "^10.5"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.2",
+    "@sanity/eslint-config-studio": "^4",
     "@types/react": "^18.0.25",
-    "@types/styled-components": "^5.1.26",
-    "eslint": "^9.39.1",
-    "prettier": "^2.8.8"
+    "@types/styled-components": "^5.1.26"
   },
   "prettier": {
     "semi": false,
