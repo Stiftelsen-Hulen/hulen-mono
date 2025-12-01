@@ -265,8 +265,8 @@ export const JoinEmailForm = ({
             onChangeValidity={(boolean) => (isValidPhoneNumber = boolean)}
             initOptions={{
               i18n: phonePluginLanguage(language) /*Translate phone-form to client-language */,
-              initialCountry: 'NO',
-              countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'ea', 'fr'],
+              initialCountry: 'no',
+              countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'es', 'fr'],
               // containerClass: 'MuiFormControl-root MuiFormControl-fullWidth ',
               strictMode: false /*only optional (leading) plus, and numbers */,
               hiddenInput: (telInputName) => ({

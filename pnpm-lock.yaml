@@ -70,6 +70,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@emotion/cache':
+        specifier: ^11.14.0
+        version: 11.14.0
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.14.0(@types/react@18.3.27)(react@18.3.1)
@@ -100,6 +103,9 @@ importers:
       intl-tel-input:
         specifier: ^25.3.1
         version: 25.12.5
+      next:
+        specifier: ^14.2.33
+        version: 14.2.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-sanity-image:
         specifier: ^6.1.0
         version: 6.2.0(@sanity/client@6.29.1)(next@14.2.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
