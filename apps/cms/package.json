@@ -1,5 +1,5 @@
 {
-  "name": "hulen_sanity_studio",
+  "name": "sanity_cms",
   "private": true,
   "version": "2.0.0",
   "main": "package.json",
@@ -18,20 +18,17 @@
   "dependencies": {
     "@sanity/document-internationalization": "^4.1.0",
     "@sanity/vision": "^4.15.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-is": "^18.2.0",
     "sanity": "^4.15.0",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "prismjs": "^1.30",
+    "glob": "^10.5"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.2",
+    "@sanity/eslint-config-studio": "^4",
     "@types/react": "^18.0.25",
-    "@types/styled-components": "^5.1.26",
-    "eslint": "^9.39.1",
-    "prettier": "^2.8.8",
-    "typescript": "^4.9.5"
+    "@types/styled-components": "^5.1.26"
   },
   "prettier": {
     "semi": false,

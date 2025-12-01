@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-mui-typescript-starter",
-  "version": "0.1.0",
+  "name": "frontend_nextjs",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -18,26 +18,20 @@
     "@portabletext/types": "^2.0.6",
     "@sanity/client": "^6.4.9",
     "intl-tel-input": "^25.3.1",
-    "next": "^13.5.10",
     "next-sanity-image": "^6.1.0",
     "node-cache": "^5.1.2",
-    "nodemailer": "^6.10.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "nodemailer": "^7.0.11"
   },
   "devDependencies": {
     "@types/node": "20.6.0",
-    "@types/nodemailer": "^6.4.17",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.7.0",
-    "eslint": "8.49.0",
-    "eslint-config-next": "13.4.19",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-unused-imports": "^2.0.0",
-    "prettier": "^2.7.1",
-    "typescript": "5.2.2"
+    "@types/nodemailer": "^7",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint-config-next": "^14.2.33",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-prettier": "*",
+    "eslint-plugin-unused-imports": "*"
   }
 }
